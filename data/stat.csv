@@ -1,0 +1,263 @@
+Statistics
+Descriptive statistics
+Continuous data
+Location
+Mean arithmetic geometric harmonic
+Median
+Mode
+Dispersion	
+Range
+Standard deviation
+Coefficient of variation
+Percentile
+Interquartile range
+Shape
+Variance
+Skewness
+Kurtosis
+Moments
+L-moments
+Count data
+Index of dispersion
+Summary tables	
+Grouped data
+Frequency distribution
+Contingency table
+Dependence	
+Pearson product-moment correlation
+Rank correlation
+Spearman's rho
+Kendall's tau
+Partial correlation
+Scatter plot
+Statistical graphics	
+Bar chart
+Biplot
+Box plot
+Control chart
+Correlogram
+Fan chart
+Forest plot
+Histogram
+Pie chart
+Q–Q plot
+Run chart
+Scatter plot
+Stem-and-leaf display
+Radar chart
+Data collection
+Study design	
+Effect size
+Standard error
+Statistical power
+Sample size determination
+Survey methodology
+Sampling stratified cluster
+Opinion poll
+Questionnaire
+Controlled experiments
+Design optimal
+Randomized
+Random assignment
+Replication
+Blocking
+Factorial experiment
+Uncontrolled studies	
+Natural experiment
+Quasi-experiment
+Observational study
+Statistical inference
+Statistical theory	
+Sampling distribution
+Order statistic
+Scan statistic
+Record value
+Sufficiency
+Completeness
+Exponential family
+Permutation test
+Randomization test
+Empirical distribution
+Bootstrap
+U statistic
+Efficiency
+Asymptotics
+Robustness
+Frequentist inference	
+Confidence interval
+Testing hypotheses
+Power
+Unbiased estimators	
+Mean unbiased minimum-variance
+Median unbiased
+Biased estimators	
+Maximum likelihood
+Method of moments
+Minimum distance
+Density estimation
+Parametric tests	
+Likelihood-ratio
+Wald
+Score
+Specific tests	
+Z normal
+Student's t-test
+F test
+Shapiro–Wilk
+Kolmogorov–Smirnov
+Goodness of fit	
+Chi-squared
+G test
+Sample source
+Anderson–Darling
+Sample normality
+Shapiro–Wilk
+Skewness normality
+Kurtosis normality
+Jarque-Bera
+Model comparison
+Likelihood-ratio
+Model quality
+Akaike criterion
+Signed-rank
+1-sample
+Wilcoxon
+2-sample
+Mann–Whitney U
+1-way anova
+Kruskal–Wallis
+Bayesian inference	
+Bayesian probability
+Credible interval
+Bayes factor
+Bayesian estimator
+Maximum posterior estimator
+Correlation
+Regression analysis
+Pearson product–moment
+Partial correlation
+Confounding variable
+Coefficient of determination
+Regression analysis	
+Errors and residuals
+Regression model validation
+Mixed effects models
+Simultaneous equations models
+Multivariate adaptive regression splines
+MARS
+Linear regression	
+Simple linear regression
+Ordinary least squares
+General linear model
+Bayesian regression
+Non-standard predictors	
+Nonlinear regression
+Nonparametric
+Semiparametric
+Isotonic
+Robust
+Heteroscedasticity
+Homoscedasticity
+Generalized linear model	
+Exponential families
+Logistic
+Bernoulli
+Binomial
+Poisson regressions
+Partition of variance	
+Analysis of variance
+ANOVA
+Analysis of covariance
+Multivariate ANOVA
+Degrees of freedom 
+Categorical
+Multivariate
+Time-series
+Survival analysis
+Categorical	
+Cohen's kappa
+Contingency table
+Graphical model
+Log-linear model
+McNemar's test
+Multivariate	
+Multivariate regression
+Principal components
+Factor analysis
+Cluster analysis
+Classification
+Copulas
+Time-series	
+Decomposition
+Trend
+Stationarity
+Seasonal adjustment
+Exponential smoothing
+Cointegration
+Structural break
+Granger causality
+Specific tests	
+Dickey–Fuller
+Johansen
+Q-statistic
+Ljung–Box
+Durbin–Watson
+Breusch–Godfrey
+Time domain	
+Autocorrelation
+ACF
+Partial ACF
+PACF
+Cross-correlation
+XCF
+ARMA model
+ARIMA model
+Box–Jenkins
+Autoregressive conditional heteroskedasticity
+ARCH
+Vector autoregression
+VAR
+Frequency domain	
+Spectral density estimation
+Fourier
+Wavelet
+Survival	
+Survival function
+Kaplan–Meier estimator
+product limit
+Log-rank test
+Failure rate
+Proportional hazards models
+Accelerated failure time
+AFT 
+Applications
+Biostatistics	
+Bioinformatics
+Clinical trials
+Clinical studies
+Epidemiology
+Medical statistics
+Engineering statistics	
+Chemometrics
+Methods engineering
+Probabilistic design
+Process control
+quality control
+Reliability
+System identification
+Social statistics	
+Actuarial science
+Census
+Crime statistics
+Demography
+Econometrics
+National accounts
+Official statistics
+Population
+Psychometrics
+Spatial statistics	
+Cartography
+Environmental statistics
+Geographic information system
+Geostatistics
+Kriging
