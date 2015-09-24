@@ -3,7 +3,7 @@ package info.chenli.mooc.semantic;
 public class Keyword {
 
 	private String theWord;
-	private double score;
+	private float score;
 
 	public String getTheWord() {
 		return theWord;
@@ -13,11 +13,11 @@ public class Keyword {
 		this.theWord = theWord;
 	}
 
-	public double getScore() {
+	public float getScore() {
 		return score;
 	}
 
-	public void setScore(double score) {
+	public void setScore(float score) {
 		this.score = score;
 	}
 

@@ -79,6 +79,6 @@ public class VideoSegmentor {
 	}
 
 	static public void main(String[] args) {
-		new Segmentor().readFromGroundTruth("./gt/2-5-false.csv");
+		new VideoSegmentor().readFromGroundTruth("./gt/2-5-false.csv");
 	}
 }

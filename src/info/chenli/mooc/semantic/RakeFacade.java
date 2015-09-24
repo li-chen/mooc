@@ -36,7 +36,7 @@ public class RakeFacade {
 					Keyword keyword = new Keyword();
 					keyword.setTheWord(token.substring(token.indexOf("('") + 2,
 							token.lastIndexOf("',")).trim());
-					keyword.setScore(Double.parseDouble(token.substring(
+					keyword.setScore(Float.parseFloat(token.substring(
 							token.lastIndexOf("',") + 2).trim()));
 
 					keywords.add(keyword);
@@ -53,6 +53,10 @@ public class RakeFacade {
 			throw new RuntimeException(e);
 		}
 
+	}
+
+	public List<Keyword> getKeywords() {
+		return keywords;
 	}
 
 	public static void main(String[] args) {
