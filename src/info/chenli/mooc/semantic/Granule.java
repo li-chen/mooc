@@ -4,9 +4,18 @@ import java.util.List;
 
 public class Granule {
 
+	private String videoName;
 	private int start, end;
 
 	private List<Keyword> keywords;
+
+	public String getVideoName() {
+		return videoName;
+	}
+
+	public void setVideoName(String videoName) {
+		this.videoName = videoName;
+	}
 
 	public int getStart() {
 		return start;

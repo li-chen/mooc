@@ -1,12 +1,12 @@
 package info.chenli.mooc.semantic;
 
-import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 public class Video {
 
 	private String name;
-	private List<Instant> points;
+	private List<Date> points;
 
 	public String getName() {
 		return name;
@@ -16,11 +16,11 @@ public class Video {
 		this.name = name;
 	}
 
-	public List<Instant> getPoints() {
+	public List<Date> getPoints() {
 		return points;
 	}
 
-	public void setPoints(List<Instant> points) {
+	public void setPoints(List<Date> points) {
 		this.points = points;
 	}
 

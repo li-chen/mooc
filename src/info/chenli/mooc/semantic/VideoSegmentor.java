@@ -4,8 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.Instant;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.logging.Logger;
@@ -15,9 +17,9 @@ import java.util.logging.Logger;
  * @author Chen Li
  *
  */
-public class Segmentor {
+public class VideoSegmentor {
 
-	private static Logger logger = Logger.getLogger(Segmentor.class.getName());
+	private static Logger logger = Logger.getLogger(VideoSegmentor.class.getName());
 
 	private List<Granule> granules;
 
@@ -32,20 +34,20 @@ public class Segmentor {
 
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
-			String line = br.readLine();
 
-			while (line != null) {
+			String line;
+			while ((line = br.readLine()) != null) {
 
 				StringTokenizer st = new StringTokenizer(line, ",");
-				String videoName = st.nextToken();
+				String videoName = st.nextToken().trim();
 
 				Video video = new Video();
 				video.setName(videoName);
 
-				video.setPoints(new ArrayList<Instant>());
+				video.setPoints(new ArrayList<Date>());
 
 				while (st.hasMoreTokens()) {
-					String token = st.nextToken();
+					String token = st.nextToken().trim();
 					if (null == token || token.equals("")) {
 						break;
 					}
@@ -53,7 +55,8 @@ public class Segmentor {
 					String timeStr = token.substring(0, token.lastIndexOf(":"));
 					String type = token.substring(token.lastIndexOf(":"));
 
-					video.getPoints().add(Instant.parse(timeStr));
+					video.getPoints().add(
+							new SimpleDateFormat("hh:mm:ss").parse(timeStr));
 				}
 
 				videos.add(video);
@@ -67,12 +70,15 @@ public class Segmentor {
 		} catch (IOException e) {
 			logger.severe(e.getMessage());
 			throw new RuntimeException(e);
+		} catch (ParseException e) {
+			logger.severe(e.getMessage());
+			throw new RuntimeException(e);
 		}
 
 		return videos;
 	}
 
 	static public void main(String[] args) {
-		new Segmentor().readFromGroundTruth("");
+		new Segmentor().readFromGroundTruth("./gt/2-5-false.csv");
 	}
 }
