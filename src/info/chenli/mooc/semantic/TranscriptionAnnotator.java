@@ -2,32 +2,46 @@ package info.chenli.mooc.semantic;
 
 import info.chenli.mooc.semantic.types.KeywordAnnotation;
 import info.chenli.mooc.semantic.types.Transcription;
+import info.chenli.mooc.util.UIMAUtil;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+import org.apache.uima.UIMAFramework;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
+import org.apache.uima.analysis_engine.AnalysisEngine;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
+import org.apache.uima.cas.CAS;
 import org.apache.uima.jcas.JCas;
+import org.apache.uima.resource.ResourceInitializationException;
+import org.apache.uima.resource.ResourceSpecifier;
+import org.apache.uima.util.FileUtils;
+import org.apache.uima.util.InvalidXMLException;
+import org.apache.uima.util.XMLInputSource;
 
 public class TranscriptionAnnotator extends JCasAnnotator_ImplBase {
 
 	private static Logger logger = Logger
 			.getLogger(TranscriptionAnnotator.class.getName());
+	private static String taeDescriptor = "./desc/TranscriptionAnnotator.xml";
 
 	@Override
 	public void process(JCas jcas) throws AnalysisEngineProcessException {
-
+		System.out.println(UIMAUtil.getJCasFilePath(jcas));
 		Scanner scanner = new Scanner(jcas.getDocumentText());
 		RakeFacade rf = new RakeFacade();
 		rf.readKeywords(new File(
 				"data/MITx-6.00x-2013_Spring/transcription_600.rake-tutorial.txt"));
 
 		int offset = 0;
+		int num_keywords = 0;
+		int num_sentenceWithKeywords = 0;
 		while (scanner.hasNextLine()) {
 
 			String line = scanner.nextLine();
@@ -53,9 +67,12 @@ public class TranscriptionAnnotator extends JCasAnnotator_ImplBase {
 
 				String transcriptionStr = scanner.nextLine();
 
+				boolean containKeywords = false;
 				for (Keyword keyword : rf.getKeywords()) {
 					int i = transcriptionStr.indexOf(keyword.getTheWord());
 					while (i >= 0) {
+						num_keywords++;
+						containKeywords = true;
 						KeywordAnnotation ka = new KeywordAnnotation(jcas,
 								offset + i, offset + i
 										+ keyword.getTheWord().length());
@@ -64,6 +81,9 @@ public class TranscriptionAnnotator extends JCasAnnotator_ImplBase {
 								i + 1);
 						ka.addToIndexes();
 					}
+				}
+				if (containKeywords) {
+					num_sentenceWithKeywords++;
 				}
 
 				Transcription transcription = new Transcription(jcas, offset,
@@ -78,16 +98,64 @@ public class TranscriptionAnnotator extends JCasAnnotator_ImplBase {
 				transcription.addToIndexes();
 
 			} catch (NumberFormatException e) {
-				logger.severe(e.getMessage());
-				throw new RuntimeException(e);
+				continue;
+				// logger.severe(e.getMessage());
+				// throw new RuntimeException(e);
 			} catch (ParseException e) {
 				logger.severe(e.getMessage());
 				throw new RuntimeException(e);
+			} catch (NoSuchElementException e) {
+				if (e.getMessage().indexOf("No line found") > -1) {
+					continue;
+				}
 			}
 
 		}
+		System.out.println(num_sentenceWithKeywords + "\t" + num_keywords);
 
 		scanner.close();
 
+	}
+
+	public static void main(String[] args) {
+
+		try {
+			XMLInputSource in = new XMLInputSource(new File(taeDescriptor));
+			ResourceSpecifier specifier = UIMAFramework.getXMLParser()
+					.parseResourceSpecifier(in);
+
+			// create Analysis Engine
+			AnalysisEngine ae = UIMAFramework.produceAnalysisEngine(specifier);
+			// create a CAS
+			CAS cas = ae.newCAS();
+
+			// read contents of file
+			File inputFile = new File(args[0]);
+			System.out.print(
+			// inputFile.getName().substring(0,
+			// inputFile.getName().length() - 4)
+			// +
+					"\t");
+			String document = FileUtils.file2String(inputFile);
+
+			// send doc through the AE
+			cas.setDocumentText(document);
+			ae.process(cas);
+
+			// destroy AE
+			ae.destroy();
+		} catch (IOException e) {
+			logger.severe(e.getMessage());
+			throw new RuntimeException(e);
+		} catch (ResourceInitializationException e) {
+			logger.severe(e.getMessage());
+			throw new RuntimeException(e);
+		} catch (InvalidXMLException e) {
+			logger.severe(e.getMessage());
+			throw new RuntimeException(e);
+		} catch (AnalysisEngineProcessException e) {
+			logger.severe(e.getMessage());
+			throw new RuntimeException(e);
+		}
 	}
 }

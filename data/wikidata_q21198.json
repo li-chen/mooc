@@ -1,0 +1,257 @@
+{
+  "entities": {
+    "Q21198": {
+      "type": "item",
+      "id": "Q21198",
+      "labels": {
+        "en": {
+          "language": "en",
+          "value": "computer science"
+        }
+      },
+      "claims": {
+        "P1245": [
+          {
+            "mainsnak": {
+              "snaktype": "value",
+              "property": "P1245",
+              "datavalue": {
+                "value": "1934",
+                "type": "string"
+              },
+              "datatype": "string"
+            },
+            "type": "statement",
+            "id": "Q21198$f59fdc6b-4fdb-6356-c381-dd77b6378c13",
+            "rank": "normal"
+          }
+        ],
+        "P1036": [
+          {
+            "mainsnak": {
+              "snaktype": "value",
+              "property": "P1036",
+              "datavalue": {
+                "value": "004",
+                "type": "string"
+              },
+              "datatype": "string"
+            },
+            "type": "statement",
+            "id": "Q21198$8ba340c9-4ad1-b338-de0b-cba29a1759a8",
+            "rank": "normal"
+          }
+        ],
+        "P227": [
+          {
+            "mainsnak": {
+              "snaktype": "value",
+              "property": "P227",
+              "datavalue": {
+                "value": "4026894-9",
+                "type": "string"
+              },
+              "datatype": "string"
+            },
+            "type": "statement",
+            "id": "q21198$78CDE619-2783-4327-9BC3-164050C07AE7",
+            "rank": "normal",
+            "references": [
+              {
+                "hash": "004ec6fbee857649acdbdbad4f97b2c8571df97b",
+                "snaks": {
+                  "P143": [
+                    {
+                      "snaktype": "value",
+                      "property": "P143",
+                      "datavalue": {
+                        "value": {
+                          "entity-type": "item",
+                          "numeric-id": 48183
+                        },
+                        "type": "wikibase-entityid"
+                      },
+                      "datatype": "wikibase-item"
+                    }
+                  ]
+                },
+                "snaks-order": [
+                  "P143"
+                ]
+              }
+            ]
+          }
+        ],
+        "P373": [
+          {
+            "mainsnak": {
+              "snaktype": "value",
+              "property": "P373",
+              "datavalue": {
+                "value": "Computer science",
+                "type": "string"
+              },
+              "datatype": "string"
+            },
+            "type": "statement",
+            "id": "q21198$61AE6A6E-62AF-4B67-8F1F-81194D788078",
+            "rank": "normal",
+            "references": [
+              {
+                "hash": "004ec6fbee857649acdbdbad4f97b2c8571df97b",
+                "snaks": {
+                  "P143": [
+                    {
+                      "snaktype": "value",
+                      "property": "P143",
+                      "datavalue": {
+                        "value": {
+                          "entity-type": "item",
+                          "numeric-id": 48183
+                        },
+                        "type": "wikibase-entityid"
+                      },
+                      "datatype": "wikibase-item"
+                    }
+                  ]
+                },
+                "snaks-order": [
+                  "P143"
+                ]
+              }
+            ]
+          }
+        ],
+        "P508": [
+          {
+            "mainsnak": {
+              "snaktype": "value",
+              "property": "P508",
+              "datavalue": {
+                "value": "1576",
+                "type": "string"
+              },
+              "datatype": "string"
+            },
+            "type": "statement",
+            "id": "q21198$62D2D631-0ACF-43C9-8F42-8215E9D27DED",
+            "rank": "normal",
+            "references": [
+              {
+                "hash": "33ef5efac8ec9d2de05f19b852ff1698d9036c26",
+                "snaks": {
+                  "P143": [
+                    {
+                      "snaktype": "value",
+                      "property": "P143",
+                      "datavalue": {
+                        "value": {
+                          "entity-type": "item",
+                          "numeric-id": 460907
+                        },
+                        "type": "wikibase-entityid"
+                      },
+                      "datatype": "wikibase-item"
+                    }
+                  ]
+                },
+                "snaks-order": [
+                  "P143"
+                ]
+              }
+            ]
+          }
+        ],
+        "P910": [
+          {
+            "mainsnak": {
+              "snaktype": "value",
+              "property": "P910",
+              "datavalue": {
+                "value": {
+                  "entity-type": "item",
+                  "numeric-id": 6517860
+                },
+                "type": "wikibase-entityid"
+              },
+              "datatype": "wikibase-item"
+            },
+            "type": "statement",
+            "id": "Q21198$E96C0A3C-F69C-4C9F-A577-1BCBF2E5349A",
+            "rank": "normal"
+          }
+        ],
+        "P1482": [
+          {
+            "mainsnak": {
+              "snaktype": "value",
+              "property": "P1482",
+              "datavalue": {
+                "value": "http://stackoverflow.com/tags/computer-science",
+                "type": "string"
+              },
+              "datatype": "url"
+            },
+            "type": "statement",
+            "id": "Q21198$D3844B21-7A66-473A-B2A9-3ACB2B2EC1EA",
+            "rank": "normal"
+          }
+        ],
+        "P279": [
+          {
+            "mainsnak": {
+              "snaktype": "value",
+              "property": "P279",
+              "datavalue": {
+                "value": {
+                  "entity-type": "item",
+                  "numeric-id": 11862829
+                },
+                "type": "wikibase-entityid"
+              },
+              "datatype": "wikibase-item"
+            },
+            "type": "statement",
+            "id": "Q21198$8769fc2d-4480-163a-d65c-1f43fc6e8fb7",
+            "rank": "normal"
+          },
+          {
+            "mainsnak": {
+              "snaktype": "value",
+              "property": "P279",
+              "datavalue": {
+                "value": {
+                  "entity-type": "item",
+                  "numeric-id": 816264
+                },
+                "type": "wikibase-entityid"
+              },
+              "datatype": "wikibase-item"
+            },
+            "type": "statement",
+            "id": "Q21198$f2461ef7-4560-ae6f-dddf-4595d92d1d59",
+            "rank": "normal"
+          },
+          {
+            "mainsnak": {
+              "snaktype": "value",
+              "property": "P279",
+              "datavalue": {
+                "value": {
+                  "entity-type": "item",
+                  "numeric-id": 11023
+                },
+                "type": "wikibase-entityid"
+              },
+              "datatype": "wikibase-item"
+            },
+            "type": "statement",
+            "id": "Q21198$495b32f9-4883-f032-c0c9-0bdad7faad2f",
+            "rank": "normal"
+          }
+        ]
+      }
+    }
+  },
+  "success": 1
+}
