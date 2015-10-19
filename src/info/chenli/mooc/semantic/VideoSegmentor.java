@@ -19,18 +19,22 @@ import java.util.logging.Logger;
  */
 public class VideoSegmentor {
 
-	private static Logger logger = Logger.getLogger(VideoSegmentor.class.getName());
+	private static Logger logger = Logger.getLogger(VideoSegmentor.class
+			.getName());
 
-	private List<Granule> granules;
+	public static VideoSegmentor instance;
+	private static List<Video> videoWithSegments;
+	private static String file = "data/MITx-6.00x-2013_Spring/videoSegments.csv";
 
-	/**
-	 * Load the ground truth from a CSV file (e.g. generated from AMT results)
-	 * 
-	 * @param file
-	 */
-	public List<Video> readFromGroundTruth(String file) {
+	// override the default constructor
+	private VideoSegmentor() {
+	}
 
-		List<Video> videos = new ArrayList<Video>();
+	static {
+
+		instance = new VideoSegmentor();
+
+		videoWithSegments = new ArrayList<Video>();
 
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
@@ -45,6 +49,7 @@ public class VideoSegmentor {
 				video.setName(videoName);
 
 				video.setPoints(new ArrayList<Date>());
+				video.setTypes(new ArrayList<String>());
 
 				while (st.hasMoreTokens()) {
 					String token = st.nextToken().trim();
@@ -55,11 +60,13 @@ public class VideoSegmentor {
 					String timeStr = token.substring(0, token.lastIndexOf(":"));
 					String type = token.substring(token.lastIndexOf(":"));
 
+					System.out.println(timeStr);
 					video.getPoints().add(
 							new SimpleDateFormat("hh:mm:ss").parse(timeStr));
+					video.getTypes().add(type);
 				}
 
-				videos.add(video);
+				videoWithSegments.add(video);
 			}
 
 			br.close();
@@ -75,10 +82,18 @@ public class VideoSegmentor {
 			throw new RuntimeException(e);
 		}
 
-		return videos;
+	}
+
+	public List<Video> getVideoWithSegments() {
+		return videoWithSegments;
+	}
+
+	public void setVideoWithSegments(List<Video> videoWithSegments) {
+		this.videoWithSegments = videoWithSegments;
 	}
 
 	static public void main(String[] args) {
-		new VideoSegmentor().readFromGroundTruth("./gt/2-5-false.csv");
+		// new VideoSegmentor().readFromGroundTruth("./gt/2-5-false.csv");
+		new VideoSegmentor().getVideoWithSegments();
 	}
 }

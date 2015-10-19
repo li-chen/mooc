@@ -7,6 +7,7 @@ public class Video {
 
 	private String name;
 	private List<Date> points;
+	private List<String> types;
 
 	public String getName() {
 		return name;
@@ -22,6 +23,14 @@ public class Video {
 
 	public void setPoints(List<Date> points) {
 		this.points = points;
+	}
+
+	public List<String> getTypes() {
+		return types;
+	}
+
+	public void setTypes(List<String> types) {
+		this.types = types;
 	}
 
 }

@@ -1,5 +1,5 @@
 
-/* First created by JCasGen Thu Sep 24 11:05:28 EDT 2015 */
+/* First created by JCasGen Mon Oct 19 14:51:56 EDT 2015 */
 package info.chenli.mooc.semantic.types;
 
 import org.apache.uima.jcas.JCas;
@@ -16,7 +16,7 @@ import org.apache.uima.jcas.tcas.Annotation_Type;
 /** 
  * Updated by JCasGen Mon Oct 19 16:33:46 EDT 2015
  * @generated */
-public class Transcription_Type extends Annotation_Type {
+public class VisualSegment_Type extends Annotation_Type {
   /** @generated 
    * @return the generator for this type
    */
@@ -26,25 +26,49 @@ public class Transcription_Type extends Annotation_Type {
   private final FSGenerator fsGenerator = 
     new FSGenerator() {
       public FeatureStructure createFS(int addr, CASImpl cas) {
-  			 if (Transcription_Type.this.useExistingInstance) {
+  			 if (VisualSegment_Type.this.useExistingInstance) {
   			   // Return eq fs instance if already created
-  		     FeatureStructure fs = Transcription_Type.this.jcas.getJfsFromCaddr(addr);
+  		     FeatureStructure fs = VisualSegment_Type.this.jcas.getJfsFromCaddr(addr);
   		     if (null == fs) {
-  		       fs = new Transcription(addr, Transcription_Type.this);
-  			   Transcription_Type.this.jcas.putJfsFromCaddr(addr, fs);
+  		       fs = new VisualSegment(addr, VisualSegment_Type.this);
+  			   VisualSegment_Type.this.jcas.putJfsFromCaddr(addr, fs);
   			   return fs;
   		     }
   		     return fs;
-        } else return new Transcription(addr, Transcription_Type.this);
+        } else return new VisualSegment(addr, VisualSegment_Type.this);
   	  }
     };
   /** @generated */
   @SuppressWarnings ("hiding")
-  public final static int typeIndexID = Transcription.typeIndexID;
+  public final static int typeIndexID = VisualSegment.typeIndexID;
   /** @generated 
      @modifiable */
   @SuppressWarnings ("hiding")
-  public final static boolean featOkTst = JCasRegistry.getFeatOkTst("info.chenli.mooc.semantic.types.Transcription");
+  public final static boolean featOkTst = JCasRegistry.getFeatOkTst("info.chenli.mooc.semantic.types.VisualSegment");
+ 
+  /** @generated */
+  final Feature casFeat_semanticType;
+  /** @generated */
+  final int     casFeatCode_semanticType;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public String getSemanticType(int addr) {
+        if (featOkTst && casFeat_semanticType == null)
+      jcas.throwFeatMissing("semanticType", "info.chenli.mooc.semantic.types.VisualSegment");
+    return ll_cas.ll_getStringValue(addr, casFeatCode_semanticType);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setSemanticType(int addr, String v) {
+        if (featOkTst && casFeat_semanticType == null)
+      jcas.throwFeatMissing("semanticType", "info.chenli.mooc.semantic.types.VisualSegment");
+    ll_cas.ll_setStringValue(addr, casFeatCode_semanticType, v);}
+    
+  
  
   /** @generated */
   final Feature casFeat_startTime;
@@ -56,7 +80,7 @@ public class Transcription_Type extends Annotation_Type {
    */ 
   public long getStartTime(int addr) {
         if (featOkTst && casFeat_startTime == null)
-      jcas.throwFeatMissing("startTime", "info.chenli.mooc.semantic.types.Transcription");
+      jcas.throwFeatMissing("startTime", "info.chenli.mooc.semantic.types.VisualSegment");
     return ll_cas.ll_getLongValue(addr, casFeatCode_startTime);
   }
   /** @generated
@@ -65,7 +89,7 @@ public class Transcription_Type extends Annotation_Type {
    */    
   public void setStartTime(int addr, long v) {
         if (featOkTst && casFeat_startTime == null)
-      jcas.throwFeatMissing("startTime", "info.chenli.mooc.semantic.types.Transcription");
+      jcas.throwFeatMissing("startTime", "info.chenli.mooc.semantic.types.VisualSegment");
     ll_cas.ll_setLongValue(addr, casFeatCode_startTime, v);}
     
   
@@ -80,7 +104,7 @@ public class Transcription_Type extends Annotation_Type {
    */ 
   public long getEndTime(int addr) {
         if (featOkTst && casFeat_endTime == null)
-      jcas.throwFeatMissing("endTime", "info.chenli.mooc.semantic.types.Transcription");
+      jcas.throwFeatMissing("endTime", "info.chenli.mooc.semantic.types.VisualSegment");
     return ll_cas.ll_getLongValue(addr, casFeatCode_endTime);
   }
   /** @generated
@@ -89,32 +113,8 @@ public class Transcription_Type extends Annotation_Type {
    */    
   public void setEndTime(int addr, long v) {
         if (featOkTst && casFeat_endTime == null)
-      jcas.throwFeatMissing("endTime", "info.chenli.mooc.semantic.types.Transcription");
+      jcas.throwFeatMissing("endTime", "info.chenli.mooc.semantic.types.VisualSegment");
     ll_cas.ll_setLongValue(addr, casFeatCode_endTime, v);}
-    
-  
- 
-  /** @generated */
-  final Feature casFeat_Index;
-  /** @generated */
-  final int     casFeatCode_Index;
-  /** @generated
-   * @param addr low level Feature Structure reference
-   * @return the feature value 
-   */ 
-  public int getIndex(int addr) {
-        if (featOkTst && casFeat_Index == null)
-      jcas.throwFeatMissing("Index", "info.chenli.mooc.semantic.types.Transcription");
-    return ll_cas.ll_getIntValue(addr, casFeatCode_Index);
-  }
-  /** @generated
-   * @param addr low level Feature Structure reference
-   * @param v value to set 
-   */    
-  public void setIndex(int addr, int v) {
-        if (featOkTst && casFeat_Index == null)
-      jcas.throwFeatMissing("Index", "info.chenli.mooc.semantic.types.Transcription");
-    ll_cas.ll_setIntValue(addr, casFeatCode_Index, v);}
     
   
 
@@ -125,9 +125,13 @@ public class Transcription_Type extends Annotation_Type {
 	 * @param jcas JCas
 	 * @param casType Type 
 	 */
-  public Transcription_Type(JCas jcas, Type casType) {
+  public VisualSegment_Type(JCas jcas, Type casType) {
     super(jcas, casType);
     casImpl.getFSClassRegistry().addGeneratorForType((TypeImpl)this.casType, getFSGenerator());
+
+ 
+    casFeat_semanticType = jcas.getRequiredFeatureDE(casType, "semanticType", "uima.cas.String", featOkTst);
+    casFeatCode_semanticType  = (null == casFeat_semanticType) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_semanticType).getCode();
 
  
     casFeat_startTime = jcas.getRequiredFeatureDE(casType, "startTime", "uima.cas.Long", featOkTst);
@@ -136,10 +140,6 @@ public class Transcription_Type extends Annotation_Type {
  
     casFeat_endTime = jcas.getRequiredFeatureDE(casType, "endTime", "uima.cas.Long", featOkTst);
     casFeatCode_endTime  = (null == casFeat_endTime) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_endTime).getCode();
-
- 
-    casFeat_Index = jcas.getRequiredFeatureDE(casType, "Index", "uima.cas.Integer", featOkTst);
-    casFeatCode_Index  = (null == casFeat_Index) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_Index).getCode();
 
   }
 }

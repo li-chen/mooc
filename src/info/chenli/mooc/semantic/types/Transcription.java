@@ -11,7 +11,7 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Thu Sep 24 17:21:05 EDT 2015
+ * Updated by JCasGen Mon Oct 19 16:33:46 EDT 2015
  * XML source: /data/sls/u/cli/projects/mooc/code/desc/TranscriptionAnnotator.xml
  * @generated */
 public class Transcription extends Annotation {
@@ -77,47 +77,47 @@ public class Transcription extends Annotation {
  
     
   //*--------------*
-  //* Feature: StartTime
+  //* Feature: startTime
 
-  /** getter for StartTime - gets 
+  /** getter for startTime - gets 
    * @generated
    * @return value of the feature 
    */
   public long getStartTime() {
-    if (Transcription_Type.featOkTst && ((Transcription_Type)jcasType).casFeat_StartTime == null)
-      jcasType.jcas.throwFeatMissing("StartTime", "info.chenli.mooc.semantic.types.Transcription");
-    return jcasType.ll_cas.ll_getLongValue(addr, ((Transcription_Type)jcasType).casFeatCode_StartTime);}
+    if (Transcription_Type.featOkTst && ((Transcription_Type)jcasType).casFeat_startTime == null)
+      jcasType.jcas.throwFeatMissing("startTime", "info.chenli.mooc.semantic.types.Transcription");
+    return jcasType.ll_cas.ll_getLongValue(addr, ((Transcription_Type)jcasType).casFeatCode_startTime);}
     
-  /** setter for StartTime - sets  
+  /** setter for startTime - sets  
    * @generated
    * @param v value to set into the feature 
    */
   public void setStartTime(long v) {
-    if (Transcription_Type.featOkTst && ((Transcription_Type)jcasType).casFeat_StartTime == null)
-      jcasType.jcas.throwFeatMissing("StartTime", "info.chenli.mooc.semantic.types.Transcription");
-    jcasType.ll_cas.ll_setLongValue(addr, ((Transcription_Type)jcasType).casFeatCode_StartTime, v);}    
+    if (Transcription_Type.featOkTst && ((Transcription_Type)jcasType).casFeat_startTime == null)
+      jcasType.jcas.throwFeatMissing("startTime", "info.chenli.mooc.semantic.types.Transcription");
+    jcasType.ll_cas.ll_setLongValue(addr, ((Transcription_Type)jcasType).casFeatCode_startTime, v);}    
    
     
   //*--------------*
-  //* Feature: EndTime
+  //* Feature: endTime
 
-  /** getter for EndTime - gets 
+  /** getter for endTime - gets 
    * @generated
    * @return value of the feature 
    */
   public long getEndTime() {
-    if (Transcription_Type.featOkTst && ((Transcription_Type)jcasType).casFeat_EndTime == null)
-      jcasType.jcas.throwFeatMissing("EndTime", "info.chenli.mooc.semantic.types.Transcription");
-    return jcasType.ll_cas.ll_getLongValue(addr, ((Transcription_Type)jcasType).casFeatCode_EndTime);}
+    if (Transcription_Type.featOkTst && ((Transcription_Type)jcasType).casFeat_endTime == null)
+      jcasType.jcas.throwFeatMissing("endTime", "info.chenli.mooc.semantic.types.Transcription");
+    return jcasType.ll_cas.ll_getLongValue(addr, ((Transcription_Type)jcasType).casFeatCode_endTime);}
     
-  /** setter for EndTime - sets  
+  /** setter for endTime - sets  
    * @generated
    * @param v value to set into the feature 
    */
   public void setEndTime(long v) {
-    if (Transcription_Type.featOkTst && ((Transcription_Type)jcasType).casFeat_EndTime == null)
-      jcasType.jcas.throwFeatMissing("EndTime", "info.chenli.mooc.semantic.types.Transcription");
-    jcasType.ll_cas.ll_setLongValue(addr, ((Transcription_Type)jcasType).casFeatCode_EndTime, v);}    
+    if (Transcription_Type.featOkTst && ((Transcription_Type)jcasType).casFeat_endTime == null)
+      jcasType.jcas.throwFeatMissing("endTime", "info.chenli.mooc.semantic.types.Transcription");
+    jcasType.ll_cas.ll_setLongValue(addr, ((Transcription_Type)jcasType).casFeatCode_endTime, v);}    
    
     
   //*--------------*

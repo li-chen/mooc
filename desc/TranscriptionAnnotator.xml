@@ -30,12 +30,12 @@
           <supertypeName>uima.tcas.Annotation</supertypeName>
           <features>
             <featureDescription>
-              <name>StartTime</name>
+              <name>startTime</name>
               <description/>
               <rangeTypeName>uima.cas.Long</rangeTypeName>
             </featureDescription>
             <featureDescription>
-              <name>EndTime</name>
+              <name>endTime</name>
               <description/>
               <rangeTypeName>uima.cas.Long</rangeTypeName>
             </featureDescription>
@@ -43,6 +43,28 @@
               <name>Index</name>
               <description/>
               <rangeTypeName>uima.cas.Integer</rangeTypeName>
+            </featureDescription>
+          </features>
+        </typeDescription>
+      <typeDescription>
+          <name>info.chenli.mooc.semantic.types.VisualSegment</name>
+          <description/>
+          <supertypeName>uima.tcas.Annotation</supertypeName>
+          <features>
+            <featureDescription>
+              <name>semanticType</name>
+              <description/>
+              <rangeTypeName>uima.cas.String</rangeTypeName>
+            </featureDescription>
+          <featureDescription>
+              <name>startTime</name>
+              <description/>
+              <rangeTypeName>uima.cas.Long</rangeTypeName>
+            </featureDescription>
+            <featureDescription>
+              <name>endTime</name>
+              <description/>
+              <rangeTypeName>uima.cas.Long</rangeTypeName>
             </featureDescription>
           </features>
         </typeDescription>

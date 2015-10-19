@@ -2,6 +2,7 @@ package info.chenli.mooc.semantic;
 
 import info.chenli.mooc.semantic.types.KeywordAnnotation;
 import info.chenli.mooc.semantic.types.Transcription;
+import info.chenli.mooc.util.FileUtil;
 import info.chenli.mooc.util.UIMAUtil;
 
 import java.io.File;
@@ -33,15 +34,25 @@ public class TranscriptionAnnotator extends JCasAnnotator_ImplBase {
 
 	@Override
 	public void process(JCas jcas) throws AnalysisEngineProcessException {
-		System.out.println(UIMAUtil.getJCasFilePath(jcas));
+
+		// get the video and segment information
+		Video currentVideo = null;
+
+		for (Video video : VideoSegmentor.instance.getVideoWithSegments()) {
+			if (video.getName().equals(
+					FileUtil.getFileNameWithoutExtension(UIMAUtil
+							.getJCasFilePath(jcas)))) {
+				currentVideo = video;
+				break;
+			}
+		}
+
 		Scanner scanner = new Scanner(jcas.getDocumentText());
 		RakeFacade rf = new RakeFacade();
 		rf.readKeywords(new File(
 				"data/MITx-6.00x-2013_Spring/transcription_600.rake-tutorial.txt"));
 
 		int offset = 0;
-		int num_keywords = 0;
-		int num_sentenceWithKeywords = 0;
 		while (scanner.hasNextLine()) {
 
 			String line = scanner.nextLine();
@@ -67,12 +78,10 @@ public class TranscriptionAnnotator extends JCasAnnotator_ImplBase {
 
 				String transcriptionStr = scanner.nextLine();
 
-				boolean containKeywords = false;
+				// add RAKE annotations
 				for (Keyword keyword : rf.getKeywords()) {
 					int i = transcriptionStr.indexOf(keyword.getTheWord());
 					while (i >= 0) {
-						num_keywords++;
-						containKeywords = true;
 						KeywordAnnotation ka = new KeywordAnnotation(jcas,
 								offset + i, offset + i
 										+ keyword.getTheWord().length());
@@ -81,9 +90,6 @@ public class TranscriptionAnnotator extends JCasAnnotator_ImplBase {
 								i + 1);
 						ka.addToIndexes();
 					}
-				}
-				if (containKeywords) {
-					num_sentenceWithKeywords++;
 				}
 
 				Transcription transcription = new Transcription(jcas, offset,
@@ -96,6 +102,10 @@ public class TranscriptionAnnotator extends JCasAnnotator_ImplBase {
 				transcription.setEndTime(endTime.getTime());
 
 				transcription.addToIndexes();
+
+				// add video segmentation annotations
+				for (int i = 0; i < currentVideo.getPoints().size(); i++) {
+				}
 
 			} catch (NumberFormatException e) {
 				continue;
@@ -111,7 +121,6 @@ public class TranscriptionAnnotator extends JCasAnnotator_ImplBase {
 			}
 
 		}
-		System.out.println(num_sentenceWithKeywords + "\t" + num_keywords);
 
 		scanner.close();
 
@@ -140,6 +149,8 @@ public class TranscriptionAnnotator extends JCasAnnotator_ImplBase {
 
 			// send doc through the AE
 			cas.setDocumentText(document);
+			cas.createView("FilePath").setSofaDataURI(
+					inputFile.getAbsolutePath(), "text");
 			ae.process(cas);
 
 			// destroy AE
