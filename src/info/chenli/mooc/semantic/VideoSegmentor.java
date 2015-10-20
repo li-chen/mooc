@@ -60,7 +60,6 @@ public class VideoSegmentor {
 					String timeStr = token.substring(0, token.lastIndexOf(":"));
 					String type = token.substring(token.lastIndexOf(":"));
 
-					System.out.println(timeStr);
 					video.getPoints().add(
 							new SimpleDateFormat("hh:mm:ss").parse(timeStr));
 					video.getTypes().add(type);

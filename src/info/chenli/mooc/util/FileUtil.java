@@ -16,7 +16,7 @@ public class FileUtil {
 	}
 
 	public static String getFileNameWithoutExtension(String fileName) {
-		return fileName.substring(fileName.lastIndexOf("/"),
+		return fileName.substring(fileName.lastIndexOf("/") + 1,
 				fileName.lastIndexOf("."));
 	}
 

@@ -11,7 +11,7 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Mon Oct 19 16:33:46 EDT 2015
+ * Updated by JCasGen Tue Oct 20 14:15:35 EDT 2015
  * XML source: /data/sls/u/cli/projects/mooc/code/desc/TranscriptionAnnotator.xml
  * @generated */
 public class Transcription extends Annotation {

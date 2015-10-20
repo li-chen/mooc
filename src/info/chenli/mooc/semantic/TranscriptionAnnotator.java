@@ -2,14 +2,19 @@ package info.chenli.mooc.semantic;
 
 import info.chenli.mooc.semantic.types.KeywordAnnotation;
 import info.chenli.mooc.semantic.types.Transcription;
+import info.chenli.mooc.semantic.types.VisualSegment;
 import info.chenli.mooc.util.FileUtil;
 import info.chenli.mooc.util.UIMAUtil;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -19,6 +24,10 @@ import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngine;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.cas.CAS;
+import org.apache.uima.cas.CASException;
+import org.apache.uima.cas.FSIterator;
+import org.apache.uima.cas.text.AnnotationFS;
+import org.apache.uima.fit.util.JCasUtil;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.resource.ResourceSpecifier;
@@ -39,6 +48,7 @@ public class TranscriptionAnnotator extends JCasAnnotator_ImplBase {
 		Video currentVideo = null;
 
 		for (Video video : VideoSegmentor.instance.getVideoWithSegments()) {
+
 			if (video.getName().equals(
 					FileUtil.getFileNameWithoutExtension(UIMAUtil
 							.getJCasFilePath(jcas)))) {
@@ -46,11 +56,24 @@ public class TranscriptionAnnotator extends JCasAnnotator_ImplBase {
 				break;
 			}
 		}
+//		System.out.println(FileUtil.getFileNameWithoutExtension(UIMAUtil
+//				.getJCasFilePath(jcas)));
 
 		Scanner scanner = new Scanner(jcas.getDocumentText());
 		RakeFacade rf = new RakeFacade();
 		rf.readKeywords(new File(
 				"data/MITx-6.00x-2013_Spring/transcription_600.rake-tutorial.txt"));
+
+		long segmentStartTime;
+		try {
+			segmentStartTime = new SimpleDateFormat("hh:mm:ss,SSS").parse(
+					"00:00:00,000").getTime();
+		} catch (ParseException e) {
+			logger.severe(e.getMessage());
+			throw new RuntimeException(e);
+		}
+
+		int segmentOffsetBegin = 0;
 
 		int offset = 0;
 		while (scanner.hasNextLine()) {
@@ -105,6 +128,27 @@ public class TranscriptionAnnotator extends JCasAnnotator_ImplBase {
 
 				// add video segmentation annotations
 				for (int i = 0; i < currentVideo.getPoints().size(); i++) {
+
+					Date point = currentVideo.getPoints().get(i);
+					String type = currentVideo.getTypes().get(i);
+
+					if (point.getTime() > transcription.getStartTime()
+							&& point.getTime() < transcription.getEndTime()
+							&& point.getTime() != new SimpleDateFormat(
+									"hh:mm:ss").parse("00:00:01").getTime()) {
+
+						VisualSegment vs = new VisualSegment(jcas,
+								segmentOffsetBegin, transcription.getEnd());
+						vs.setStartTime(segmentStartTime);
+						vs.setEndTime(transcription.getEndTime());
+						vs.setSemanticType(type);
+
+						vs.addToIndexes(jcas);
+
+						segmentStartTime = transcription.getEndTime();
+						segmentOffsetBegin = transcription.getEnd();
+						break;
+					}
 				}
 
 			} catch (NumberFormatException e) {
@@ -129,6 +173,22 @@ public class TranscriptionAnnotator extends JCasAnnotator_ImplBase {
 	public static void main(String[] args) {
 
 		try {
+
+			//
+			// wikidata entities
+			//
+			List<String> wikiEntities = new ArrayList<String>();
+			try (BufferedReader br = new BufferedReader(new FileReader(
+					"./scripts/entities.txt"))) {
+				for (String line; (line = br.readLine()) != null;) {
+					wikiEntities.add(line.trim().toLowerCase());
+				}
+				// line is not visible here.
+			}
+
+			//
+			// document keyword analysis
+			//
 			XMLInputSource in = new XMLInputSource(new File(taeDescriptor));
 			ResourceSpecifier specifier = UIMAFramework.getXMLParser()
 					.parseResourceSpecifier(in);
@@ -140,11 +200,9 @@ public class TranscriptionAnnotator extends JCasAnnotator_ImplBase {
 
 			// read contents of file
 			File inputFile = new File(args[0]);
-			System.out.print(
-			// inputFile.getName().substring(0,
-			// inputFile.getName().length() - 4)
-			// +
-					"\t");
+			System.out.print(inputFile.getName().substring(0,
+					inputFile.getName().lastIndexOf("."))
+					+ "\t");
 			String document = FileUtils.file2String(inputFile);
 
 			// send doc through the AE
@@ -153,6 +211,30 @@ public class TranscriptionAnnotator extends JCasAnnotator_ImplBase {
 					inputFile.getAbsolutePath(), "text");
 			ae.process(cas);
 
+			FSIterator<AnnotationFS> segmentIterator = cas.getAnnotationIndex(
+					cas.getTypeSystem().getType(
+							"info.chenli.mooc.semantic.types.VisualSegment"))
+					.iterator();
+
+			int i = 0;
+			while (segmentIterator.hasNext()) {
+				VisualSegment vs = (VisualSegment) segmentIterator.next();
+				List<KeywordAnnotation> keywords = JCasUtil.selectCovered(
+						cas.getJCas(), KeywordAnnotation.class, vs);
+				for (KeywordAnnotation ka : keywords) {
+					if (wikiEntities
+							.contains(ka.getCoveredText().toLowerCase())) {
+						System.out.print(new SimpleDateFormat("hh:mm:ss")
+								.format(new Date(vs.getStartTime()))
+								+ "-"
+								+ new SimpleDateFormat("hh:mm:ss")
+										.format(new Date(vs.getEndTime()))
+								+ "\t");
+						break;
+					}
+				}
+			}
+			System.out.println();
 			// destroy AE
 			ae.destroy();
 		} catch (IOException e) {
@@ -165,6 +247,9 @@ public class TranscriptionAnnotator extends JCasAnnotator_ImplBase {
 			logger.severe(e.getMessage());
 			throw new RuntimeException(e);
 		} catch (AnalysisEngineProcessException e) {
+			logger.severe(e.getMessage());
+			throw new RuntimeException(e);
+		} catch (CASException e) {
 			logger.severe(e.getMessage());
 			throw new RuntimeException(e);
 		}
