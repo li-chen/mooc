@@ -56,8 +56,8 @@ public class TranscriptionAnnotator extends JCasAnnotator_ImplBase {
 				break;
 			}
 		}
-//		System.out.println(FileUtil.getFileNameWithoutExtension(UIMAUtil
-//				.getJCasFilePath(jcas)));
+		// System.out.println(FileUtil.getFileNameWithoutExtension(UIMAUtil
+		// .getJCasFilePath(jcas)));
 
 		Scanner scanner = new Scanner(jcas.getDocumentText());
 		RakeFacade rf = new RakeFacade();
@@ -223,8 +223,10 @@ public class TranscriptionAnnotator extends JCasAnnotator_ImplBase {
 						cas.getJCas(), KeywordAnnotation.class, vs);
 				for (KeywordAnnotation ka : keywords) {
 					if (wikiEntities
-							.contains(ka.getCoveredText().toLowerCase())) {
-						System.out.print(ka.getCoveredText().toLowerCase()+"-");
+							.contains(ka.getCoveredText().toLowerCase())
+							&& ka.getScore() > 1.5) {
+//						System.out.print(ka.getCoveredText().toLowerCase()
+//								+ "-");
 						System.out.print(new SimpleDateFormat("mm:ss")
 								.format(new Date(vs.getStartTime()))
 								+ "-"
