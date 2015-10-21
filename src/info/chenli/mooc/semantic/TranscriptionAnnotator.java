@@ -224,10 +224,11 @@ public class TranscriptionAnnotator extends JCasAnnotator_ImplBase {
 				for (KeywordAnnotation ka : keywords) {
 					if (wikiEntities
 							.contains(ka.getCoveredText().toLowerCase())) {
-						System.out.print(new SimpleDateFormat("hh:mm:ss")
+						System.out.print(ka.getCoveredText().toLowerCase()+"-");
+						System.out.print(new SimpleDateFormat("mm:ss")
 								.format(new Date(vs.getStartTime()))
 								+ "-"
-								+ new SimpleDateFormat("hh:mm:ss")
+								+ new SimpleDateFormat("mm:ss")
 										.format(new Date(vs.getEndTime()))
 								+ "\t");
 						break;
